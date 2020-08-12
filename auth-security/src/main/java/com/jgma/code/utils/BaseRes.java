@@ -73,4 +73,8 @@ public class BaseRes implements Serializable {
 		BaseRes res = new BaseRes(retCode,msg);
 		return res;
 	}
+	public static BaseRes err(String msg) {
+		BaseRes res = new BaseRes(RetCode.RET_ERROR,msg);
+		return res;
+	}
 }

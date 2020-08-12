@@ -22,10 +22,12 @@ import com.jgma.code.service.SysMenuService;
 import com.jgma.code.utils.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import com.jgma.code.utils.Constant.MenuType;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +45,8 @@ public class SysMenuController extends AbstractController{
     @Autowired
     private SysMenuService sysMenuService;
 
+    @Resource
+    private ApplicationContext ctx;
 
     /**
      * 用户进入主页 菜单列表
@@ -52,6 +56,11 @@ public class SysMenuController extends AbstractController{
         List<SysMenuEntity> menuList = sysMenuService.getUserMenuList(getUserId());
 
         return BaseRes.ok().put( menuList);
+    }
+
+    @RequestMapping("/getCtx")
+    public ApplicationContext getCtx(){
+        return ctx;
     }
 
     /**
@@ -68,6 +77,70 @@ public class SysMenuController extends AbstractController{
         PageUtils pageUtil = new PageUtils(menuList, total, query.getLimit(), query.getPage());
 
         return BaseRes.ok().put( pageUtil);
+    }
+
+    /**
+     * 选择菜单(添加、修改菜单)
+     */
+    @RequestMapping("/select")
+    @RequiresPermissions("sys:menu:select")
+    public BaseRes select(){
+        //查询列表数据
+        List<SysMenuEntity> menuList = sysMenuService.queryNotButtonList();
+
+        //添加顶级菜单
+        SysMenuEntity root = new SysMenuEntity();
+        root.setMenuId(0L);
+        root.setName("一级菜单");
+        root.setParentId(-1L);
+        root.setOpen(true);
+        menuList.add(root);
+
+        return BaseRes.ok().put( menuList);
+    }
+
+    /**
+     * 保存菜单
+     */
+    @RequestMapping("/save")
+    @RequiresPermissions("sys:menu:save")
+    public BaseRes save(@RequestBody SysMenuEntity menu){
+        //数据校验
+//        verifyForm(menu);
+
+        sysMenuService.save(menu);
+
+        return BaseRes.ok();
+    }
+
+    /**
+     * 修改菜单
+     */
+    @RequestMapping("/update")
+    @RequiresPermissions("sys:menu:update")
+    public BaseRes update(@RequestBody SysMenuEntity menu){
+        //数据校验
+//        verifyForm(menu);
+
+        sysMenuService.update(menu);
+
+        return BaseRes.ok();
+    }
+
+    /**
+     * 删除菜单
+     */
+    @RequestMapping("/delete")
+    @RequiresPermissions("sys:menu:delete")
+    public BaseRes delete(@RequestBody Long[] menuIds){
+//        for(Long menuId : menuIds){
+//            if(menuId <= 30){
+//                return BaseRes.err("系统菜单，不能删除");
+//            }
+//        }
+        sysMenuService.deleteBatch(menuIds);
+
+        return BaseRes.ok();
     }
 
     /**

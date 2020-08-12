@@ -101,12 +101,8 @@
 	</update>
 	
 	<delete id="deleteBatch">
-		delete from sys_menu where menu_id in 
-		<foreach item="menuId" collection="array" open="(" separator="," close=")">
-			#{menuId}
-		</foreach>
-		;
-		delete from sys_role_menu where menu_id in 
+		DELETE a,b FROM sys_menu a LEFT JOIN sys_role_menu b ON a.menu_id = b.menu_id WHERE a.menu_id
+		in
 		<foreach item="menuId" collection="array" open="(" separator="," close=")">
 			#{menuId}
 		</foreach>
