@@ -17,6 +17,7 @@
 
 package com.jgma.code.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 //import org.hibernate.validator.constraints.NotBlank;
 
@@ -26,9 +27,6 @@ import java.util.List;
 
 /**
  * 角色
- *
- * @author   知秋
- * @email fei6751803@163.com
  */
 @Data
 public class SysRoleEntity implements Serializable {
@@ -60,5 +58,6 @@ public class SysRoleEntity implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss" )
     private Date createTime;
 }

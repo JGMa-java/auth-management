@@ -29,9 +29,6 @@ import java.util.Map;
 
 /**
  * 角色与菜单对应关系
- *
- * @author 知秋
- * @email fei6751803@163.com
  */
 @Service("sysRoleMenuService")
 public class SysRoleMenuServiceImpl implements SysRoleMenuService {

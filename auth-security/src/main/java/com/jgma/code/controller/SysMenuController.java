@@ -21,6 +21,7 @@ import com.jgma.code.entity.SysMenuEntity;
 import com.jgma.code.service.SysMenuService;
 import com.jgma.code.utils.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
@@ -34,9 +35,6 @@ import java.util.Map;
 
 /**
  * 系统菜单
- *
- * @author 知秋
- * @email fei6751803@163.com
  */
 @RestController
 @RequestMapping("/sys/menu")
@@ -44,9 +42,6 @@ public class SysMenuController extends AbstractController{
 
     @Autowired
     private SysMenuService sysMenuService;
-
-    @Resource
-    private ApplicationContext ctx;
 
     /**
      * 用户进入主页 菜单列表
@@ -56,11 +51,6 @@ public class SysMenuController extends AbstractController{
         List<SysMenuEntity> menuList = sysMenuService.getUserMenuList(getUserId());
 
         return BaseRes.ok().put( menuList);
-    }
-
-    @RequestMapping("/getCtx")
-    public ApplicationContext getCtx(){
-        return ctx;
     }
 
     /**
@@ -77,6 +67,25 @@ public class SysMenuController extends AbstractController{
         PageUtils pageUtil = new PageUtils(menuList, total, query.getLimit(), query.getPage());
 
         return BaseRes.ok().put( pageUtil);
+    }
+
+    /**
+     * 角色授权菜单
+     */
+    @RequestMapping("/perms")
+    @RequiresPermissions("sys:menu:perms")
+    public BaseRes perms(){
+        //查询列表数据
+        List<SysMenuEntity> menuList;
+
+        //只有超级管理员，才能查看所有管理员列表
+        if(getUserId() == Constant.SUPER_ADMIN){
+            menuList = sysMenuService.queryList(new HashMap<>());
+        }else{
+            menuList = sysMenuService.queryUserList(getUserId());
+        }
+
+        return BaseRes.ok().put( menuList);
     }
 
     /**
@@ -103,6 +112,7 @@ public class SysMenuController extends AbstractController{
      * 保存菜单
      */
     @RequestMapping("/save")
+//    @RequiresRoles("admin")
     @RequiresPermissions("sys:menu:save")
     public BaseRes save(@RequestBody SysMenuEntity menu){
         //数据校验

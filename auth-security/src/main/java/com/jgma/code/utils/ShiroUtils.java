@@ -20,6 +20,8 @@ package com.jgma.code.utils;
 import com.jgma.code.entity.SysUserEntity;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 
 /**
@@ -65,5 +67,20 @@ public class ShiroUtils {
         String kaptcha = getSessionAttribute(key).toString();
         getSession().removeAttribute(key);
         return kaptcha;
+    }
+
+    /**
+     * 切换身份，登录后，动态更改subject的用户属性
+     * @param userInfo
+     */
+    public static void setUser(SysUserEntity userInfo) {
+        Subject subject = SecurityUtils.getSubject();
+        PrincipalCollection principalCollection = subject.getPrincipals();
+        String realmName = principalCollection.getRealmNames().iterator().next();
+
+        PrincipalCollection newPrincipalCollection =
+                new SimplePrincipalCollection(userInfo, realmName);
+
+        subject.runAs(newPrincipalCollection);
     }
 }

@@ -40,9 +40,6 @@ import com.google.code.kaptcha.Constants;
 
 /**
  * 登录相关
- *
- * @author 知秋
- * @email fei6751803@163.com
  */
 @RestController
 public class SysLoginController extends AbstractController {

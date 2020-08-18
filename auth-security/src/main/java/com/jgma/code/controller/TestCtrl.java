@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created By majg on 2020-08-10
- */
 @RestController
 @RequestMapping("/test")
 public class TestCtrl {

@@ -24,9 +24,6 @@ import java.util.List;
 
 /**
  * 菜单管理
- *
- * @author   知秋
- * @email fei6751803@163.com
  */
 @Data
 public class SysMenuEntity implements Serializable{

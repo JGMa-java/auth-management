@@ -15,27 +15,13 @@
  * limitations under the License.
  */
 
-package com.jgma.code.entity;
-
-import lombok.Data;
-
-import java.io.Serializable;
+package com.jgma.code.validator.group;
 
 /**
- * 角色与菜单对应关系
+ * 更新数据 Group
+ *
+ * @author 知秋
+ * @email fei6751803@163.com
  */
-@Data
-public class SysRoleMenuEntity implements Serializable {
-    private static final long serialVersionUID = -492977002385838369L;
-    private Long id;
-
-    /**
-     * 角色ID
-     */
-    private Long roleId;
-
-    /**
-     * 菜单ID
-     */
-    private Long menuId;
+public interface UpdateGroup {
 }

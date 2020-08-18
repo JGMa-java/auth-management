@@ -15,27 +15,27 @@
  * limitations under the License.
  */
 
-package com.jgma.code.entity;
+package com.jgma.code.validator;
 
-import lombok.Data;
-
-import java.io.Serializable;
+import com.jgma.code.utils.RRException;
+import org.apache.commons.lang.StringUtils;
 
 /**
- * 角色与菜单对应关系
+ * 数据校验
+ *
+ * @author 知秋
+ * @email fei6751803@163.com
  */
-@Data
-public class SysRoleMenuEntity implements Serializable {
-    private static final long serialVersionUID = -492977002385838369L;
-    private Long id;
+public class Assert {
+    public static void isBlank(String str, String message) {
+        if (StringUtils.isBlank(str)) {
+            throw new RRException(message);
+        }
+    }
 
-    /**
-     * 角色ID
-     */
-    private Long roleId;
-
-    /**
-     * 菜单ID
-     */
-    private Long menuId;
+    public static void isNull(Object object, String message) {
+        if (object == null) {
+            throw new RRException(message);
+        }
+    }
 }

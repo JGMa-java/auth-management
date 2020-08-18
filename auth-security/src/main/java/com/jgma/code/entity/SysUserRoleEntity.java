@@ -23,9 +23,6 @@ import java.io.Serializable;
 
 /**
  * 用户与角色对应关系
- *
- * @author   知秋
- * @email fei6751803@163.com
  */
 @Data
 public class SysUserRoleEntity implements Serializable {

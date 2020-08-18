@@ -27,9 +27,6 @@ import java.util.List;
 
 /**
  * 系统用户
- *
- * @author   知秋
- * @email fei6751803@163.com
  */
 @Data
 public class SysUserEntity implements Serializable{
