@@ -1,13 +1,40 @@
 package com.jgma.code;
 
+import com.alibaba.fastjson.JSON;
+import com.jgma.code.entity.RedisUserTest;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.ListOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 
-//@SpringBootTest
+import java.util.concurrent.TimeUnit;
+
+@SpringBootTest
 class AuthSecurityApplicationTests {
 
-    @Test
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+//    @Test
     void contextLoads() {
+        RedisUserTest userTest = new RedisUserTest();
+        userTest.setAddress("北京");
+        userTest.setAge(18);
+        userTest.setName("李小龙");
+        ValueOperations operations = redisTemplate.opsForValue();
+        HashOperations hashOperations = redisTemplate.opsForHash();
+
+        operations.set("user",userTest,30, TimeUnit.MINUTES);
+        Boolean exists = redisTemplate.hasKey("user");
+        System.out.println("不存在"+exists);
+
+        Object user = operations.get("user");
+        System.out.println(JSON.toJSONString(user));
+
+        ListOperations listOperations = redisTemplate.opsForList();
     }
 
     public static void main(String[] args) {
