@@ -1,6 +1,11 @@
 package com.jgma.code.redis;
 
+import com.jgma.code.utils.RedisUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/redis")
 public class RedisCtrl {
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @GetMapping("/send")
     public Object produce() {
@@ -24,6 +32,13 @@ public class RedisCtrl {
         t3.start();
         t4.start();
         t5.start();
+        return "ok";
+    }
+
+    @GetMapping("/Rewrite/{value}")
+    public Object Rewrite(@PathVariable(name = "value") String value){
+        ValueOperations valueOperations = redisTemplate.opsForValue();
+        valueOperations.set("testRewrite",value);
         return "ok";
     }
 
