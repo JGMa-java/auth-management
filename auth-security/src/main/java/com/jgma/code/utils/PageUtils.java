@@ -22,10 +22,6 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 @Data
 public class PageUtils implements Serializable {
     private static final long serialVersionUID = -1202716581589799959L;

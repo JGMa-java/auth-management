@@ -32,10 +32,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 @Service("sysMenuService")
 public class SysMenuServiceImpl implements SysMenuService {
     @Autowired

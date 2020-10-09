@@ -21,10 +21,6 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 public class XssFilter implements Filter {
 
     @Override

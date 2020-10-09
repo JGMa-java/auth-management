@@ -26,9 +26,6 @@ import java.util.Map;
 
 /**
  * 系统用户
- *
- * @author 知秋
- * @email fei6751803@163.com
  */
 @Repository
 public interface SysUserMapper extends BaseDao<SysUserEntity> {

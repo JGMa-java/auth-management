@@ -21,9 +21,6 @@ import java.util.List;
 
 /**
  * 角色与菜单对应关系
- *
- * @author 知秋
- * @email fei6751803@163.com
  */
 public interface SysRoleMenuService {
     void saveOrUpdate(Long roleId, List<Long> menuIdList);

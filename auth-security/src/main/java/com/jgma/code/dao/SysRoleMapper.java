@@ -25,9 +25,6 @@ import java.util.List;
 
 /**
  * 角色管理
- *
- * @author   知秋
- * @email fei6751803@163.com
  */
 @Repository
 public interface SysRoleMapper extends BaseDao<SysRoleEntity> {

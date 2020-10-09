@@ -27,8 +27,6 @@ import org.apache.shiro.subject.Subject;
 /**
  * Shiro工具类
  *
- * @author 知秋
- * @email fei6751803@163.com
  */
 public class ShiroUtils {
     public static Session getSession() {

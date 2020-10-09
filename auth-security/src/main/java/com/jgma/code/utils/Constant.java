@@ -19,9 +19,6 @@ package com.jgma.code.utils;
 
 /**
  * 常量
- *
- * @author 知秋
- * @email fei6751803@163.com
  */
 public class Constant {
     /** 超级管理员ID */

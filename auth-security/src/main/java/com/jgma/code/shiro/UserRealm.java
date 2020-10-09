@@ -34,10 +34,6 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 @Component("userRealm")
 public class UserRealm extends AuthorizingRealm {
     @Autowired

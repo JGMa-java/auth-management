@@ -54,7 +54,7 @@ public class ShiroConfiguration {
 
         Map<String,String> map = new HashMap<String, String>();
         // todo 放开所有接口
-        map.put("/**", "authc");
+        map.put("/**", "anon");
         map.put("/sys/login", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 

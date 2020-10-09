@@ -35,10 +35,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 @Service("sysUserService")
 public class SysUserServiceImpl implements SysUserService {
 

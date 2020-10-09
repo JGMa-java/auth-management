@@ -23,10 +23,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 @Repository
 public interface SysUserRoleMapper extends BaseDao<SysUserEntity> {
     /**

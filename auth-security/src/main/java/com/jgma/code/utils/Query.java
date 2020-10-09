@@ -23,10 +23,6 @@ import lombok.Data;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 @Data
 public class Query extends LinkedHashMap<String, Object> {
     private static final long serialVersionUID = 1L;

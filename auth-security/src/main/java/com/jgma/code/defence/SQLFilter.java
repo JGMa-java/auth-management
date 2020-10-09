@@ -20,10 +20,6 @@ package com.jgma.code.defence;
 import com.jgma.code.utils.RRException;
 import org.springframework.util.StringUtils;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 public class SQLFilter {
 
     /**

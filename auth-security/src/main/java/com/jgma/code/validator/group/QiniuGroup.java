@@ -19,9 +19,6 @@ package com.jgma.code.validator.group;
 
 /**
  *七牛云
- *
- * @author 知秋
- * @email fei6751803@163.com
  */
 public interface QiniuGroup {
 }

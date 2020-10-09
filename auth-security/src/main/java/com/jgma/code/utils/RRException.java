@@ -21,10 +21,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 @Data
 public class RRException extends RuntimeException implements Serializable {
     private static final long serialVersionUID = -601494750574444665L;

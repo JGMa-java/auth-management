@@ -25,10 +25,6 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     //没被包装过的HttpServletRequest（特殊场景，需求自己过滤）

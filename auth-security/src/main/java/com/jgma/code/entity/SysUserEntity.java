@@ -25,9 +25,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 系统用户
- */
 @Data
 public class SysUserEntity implements Serializable{
     private static final long serialVersionUID = -167607904051963460L;

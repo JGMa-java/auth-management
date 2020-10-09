@@ -24,11 +24,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Set;
-
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 public class ValidatorUtils {
     private static Validator validator;
 

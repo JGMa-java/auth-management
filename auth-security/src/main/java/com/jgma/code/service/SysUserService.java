@@ -23,10 +23,6 @@ import com.jgma.code.entity.SysUserEntity;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author 知秋
- * @email fei6751803@163.com
- */
 public interface SysUserService {
 
 
