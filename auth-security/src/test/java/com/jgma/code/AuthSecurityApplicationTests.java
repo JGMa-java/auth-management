@@ -32,6 +32,15 @@ class AuthSecurityApplicationTests {
         redisTemplate.convertAndSend("test2", person2);
     }
 
+    @Test
+    public void test2(){
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i);
+            redisTemplate.convertAndSend("test1","这是我发送的第"+i+"个消息");
+        }
+    }
+
+
 //    @Test
     void contextLoads() {
         RedisUserTest userTest = new RedisUserTest();

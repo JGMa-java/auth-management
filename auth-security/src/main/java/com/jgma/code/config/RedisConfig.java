@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jgma.code.redis.MessageReceive1;
 import com.jgma.code.redis.MessageReceive2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -47,6 +48,7 @@ public class RedisConfig {
     }
 
     /**
+     * 第一种
      * redis消息监听器容器
      * 可以添加多个监听不同话题的redis监听器，只需要把消息监听器和相应的消息订阅处理器绑定，该消息监听器
      * 通过反射技术调用消息订阅处理器的相关方法进行一些业务处理
@@ -89,5 +91,34 @@ public class RedisConfig {
         return new MessageListenerAdapter(messageReceive2, "getMessage");
     }
 
+    /**
+     * redis发布订阅第二种
+     * @param connectionFactory
+     * @param listenerAdapter
+     * @return
+     */
+    @Bean
+    public RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
+                                                   MessageListenerAdapter listenerAdapter) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.addMessageListener(listenerAdapter, new PatternTopic("test1"));
+        return container;
+    }
 
+    /**
+     * 绑定消息监听者和接收监听的方法,必须要注入这个监听器，不然会报错
+     */
+    @Bean
+    public MessageListenerAdapter listenerAdapter() {
+        return new MessageListenerAdapter(new Receiver(), "receiveMessage");
+    }
+
+
+}
+@Slf4j
+class Receiver {
+    public void receiveMessage(String message) {
+        System.out.println(message);
+    }
 }
