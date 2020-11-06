@@ -13,3 +13,5 @@ spring:
         max-idle: 20
         min-idle: 2
     timeout: 3000
+  cache:
+    type: redis

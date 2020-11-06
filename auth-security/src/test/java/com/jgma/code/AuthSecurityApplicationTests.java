@@ -1,6 +1,7 @@
 package com.jgma.code;
 
 import com.alibaba.fastjson.JSON;
+import com.jgma.code.entity.Person;
 import com.jgma.code.entity.RedisUserTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
@@ -17,6 +19,18 @@ class AuthSecurityApplicationTests {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+    @Test
+    public void test() {
+        Person person1 = new Person();
+        person1.setId("001");
+        person1.setUserName("一号");
+        Person person2 = new Person();
+        person2.setId("002");
+        person2.setUserName("二号");
+        redisTemplate.convertAndSend("test1", person1);
+        redisTemplate.convertAndSend("test2", person2);
+    }
 
 //    @Test
     void contextLoads() {

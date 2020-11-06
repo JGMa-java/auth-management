@@ -1,7 +1,9 @@
 package com.jgma.code.redis;
 
+import com.jgma.code.service.RedisService;
 import com.jgma.code.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/redis")
 public class RedisCtrl {
+
+    @Autowired
+    private RedisService redisService;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -40,6 +45,12 @@ public class RedisCtrl {
         ValueOperations valueOperations = redisTemplate.opsForValue();
         valueOperations.set("testRewrite",value);
         return "ok";
+    }
+
+    @GetMapping("/get/{key}")
+    public Object get(@PathVariable(name = "key") String key){
+
+        return redisService.get(key);
     }
 
 }
